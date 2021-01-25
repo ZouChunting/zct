@@ -51,7 +51,7 @@ public class Test2 {
 
         }
 
-         */
+
         // System.out.println(string.substring(0));
         // System.out.println(string);
         ArrayList<String> arrayList = new ArrayList<>();
@@ -64,6 +64,23 @@ public class Test2 {
         System.out.println();
 
         System.out.println(pre.indexOf('8'));
+
+
+        Map<String, Map<String, String>> map = new HashMap<>();
+        Map<String, String> map1 = new HashMap<>();
+
+        map.put("map1", map1);
+
+        map1.put("map1", "val1");
+
+        System.out.println(map.get("map2").get("map2"));
+        */
+
+        // String str = "{\"result\":\"success\",\"message\":\"成功！\"}";
+
+        Person person = new Person();
+        System.out.println(person.age);
+
 
 
 
@@ -85,4 +102,10 @@ public class Test2 {
         return n;
     }
 
+}
+
+class Person{
+    String result;
+    String message;
+    int age;
 }

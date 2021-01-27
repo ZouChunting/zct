@@ -143,12 +143,70 @@ public class Tanxin {
         int len = prices.length;
         for (int i = 1; i < len; i++) {
             int diff = prices[i] - prices[i - 1];
-            if(diff > 0){
+            if (diff > 0) {
                 res += diff;
             }
         }
 
         return res;
+    }
+
+    // 406. 根据身高重建队列
+    public int[][] reconstructQueue(int[][] people) {
+        int len = people.length;
+        if (len == 0 || len == 1) {
+            return people;
+        }
+        Arrays.sort(people, (o1, o2) -> {
+            if (o1[0] != o2[0]) {
+                return o2[0] - o1[0];
+            } else {
+                return o1[1] - o2[1];
+            }
+        });
+        List<int[]> list = new ArrayList<>();
+        for (int i = 0; i < len; i++) {
+            int[] p = people[i];
+            if (p[1] >= i) {
+                list.add(p);
+            } else {
+                list.add(p[1], p);
+            }
+        }
+
+        return list.toArray(new int[len][2]);
+    }
+
+    // 665. 非递减数列
+    // 前 <= 后
+    public boolean checkPossibility(int[] nums) {
+        int len = nums.length;
+        if (len == 0 || len == 1) {
+            return true;
+        }
+        int change = 0;
+        for (int i = 1; i < len; i++) {
+            if (nums[i] < nums[i - 1]) {
+                change++;
+                if (change > 1) {
+                    return false;
+                }
+                // 贪心策略i-2,i-1,i（关键：i-2是否存在）
+                // 1. i-2不存在，i-1置为i
+                // 2. i-2存在，且小于等于i，i-1置为i-2
+                // 3. i-2存在，且大于i，i置为i-1
+                if (i - 2 < 0) {
+                    nums[i - 1] = nums[i];
+                } else {
+                    if (nums[i - 2] <= nums[i]) {
+                        nums[i - 1] = nums[i - 2];
+                    } else {
+                        nums[i] = nums[i - 1];
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public static void main(String[] args) {
@@ -171,6 +229,12 @@ public class Tanxin {
         // System.out.println(tanxin.findMinArrowShots(points));
 
         String S = "ababcbacadefegdehijhklij";
-        System.out.println(tanxin.partitionLabels(S));
+        // System.out.println(tanxin.partitionLabels(S));
+
+        int[][] people = {{7, 0}, {4, 4}, {7, 1}, {5, 0}, {6, 1}, {5, 2}};
+        // System.out.println(Arrays.deepToString(tanxin.reconstructQueue(people)));
+
+        int[] nums = {2, 3, 3, 2, 4};
+        System.out.println(tanxin.checkPossibility(nums));
     }
 }

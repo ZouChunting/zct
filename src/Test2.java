@@ -81,6 +81,10 @@ public class Test2 {
         Person person = new Person();
         System.out.println(person.age);
 
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1,"1");
+        System.out.println(map);
+
 
 
 

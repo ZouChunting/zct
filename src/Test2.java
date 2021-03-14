@@ -85,6 +85,9 @@ public class Test2 {
         map.put(1,"1");
         System.out.println(map);
 
+        List<Integer> list = Collections.emptyList();
+        System.out.println(!list.isEmpty()&&list.contains(1));
+
 
 
 

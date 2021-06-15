@@ -1,31 +1,26 @@
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Test2 {
 
     public static void main(String[] args) {
-        String s = "0123456";
-        System.out.println(s.substring(0,2));  // 左闭右开
-
-        System.out.println(6/2*3);
-    }
-
-
-    public static void test1() {
-        int a = 1;
-        a = test2(a);
+        int a = 0;
+        try {
+            a = 1/0;
+        } catch (Exception e) {
+            System.out.println("error");
+        }
+        System.out.println("success");
         System.out.println(a);
-    }
-
-    public static int test2(int n) {
-        n = n + 1;
-        return n;
     }
 
 }
 
 class Person {
-    String result;
-    String message;
-    int age;
+    long a;
+
+    public long getA() {
+        return a;
+    }
 }

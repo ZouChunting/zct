@@ -3,6 +3,7 @@ package leetcode;
 import java.util.Arrays;
 
 public class BinarySearch {
+    // 二分查找
     // 69. x 的平方根
     // 牛顿迭代法，容后再看
     public int mySqrt(int x) {

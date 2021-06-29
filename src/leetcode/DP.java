@@ -5,6 +5,7 @@ import javafx.util.Pair;
 import java.util.*;
 
 public class DP {
+    // 动态规划
     // 70. 爬楼梯
     public int climbStairs(int n) {
         if (n < 2) {

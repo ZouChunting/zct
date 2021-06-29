@@ -3,6 +3,7 @@ package leetcode;
 import java.util.*;
 
 public class Strings {
+    // 字符串
     // 字符串比较
     // 242. 有效的字母异位词
     public boolean isAnagram(String s, String t) {

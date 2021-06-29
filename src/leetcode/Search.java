@@ -1,12 +1,11 @@
 package leetcode;
 
-import com.sun.xml.internal.xsom.XSTerm;
 import javafx.util.Pair;
 
-import java.lang.reflect.Parameter;
 import java.util.*;
 
 public class Search {
+    // 搜索
     int[] arr = new int[]{-1, 0, 1, 0, -1};
 
     void swap(int[] nums, int i, int j) {

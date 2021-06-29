@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DC {
+    // 分治法
     // 241. 为运算表达式设计优先级
     public List<Integer> diffWaysToCompute(String expression) {
         return dfs(expression, 0, expression.length() - 1);

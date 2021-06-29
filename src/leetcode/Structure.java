@@ -1,14 +1,9 @@
 package leetcode;
 
-import com.sun.tools.javac.code.Attribute;
-import javafx.util.Pair;
-
-import javax.swing.plaf.IconUIResource;
-import javax.tools.Diagnostic;
 import java.util.*;
-import java.util.function.Function;
 
 public class Structure {
+    // 数据结构
     // 数组
     // 448. 找到所有数组中消失的数字
     public List<Integer> findDisappearedNumbers(int[] nums) {

@@ -3,6 +3,7 @@ package leetcode;
 import java.util.*;
 
 public class Tanxin {
+    // 贪心算法
     // 455. 分发饼干
     public int findContentChildren(int[] g, int[] s) {
         // 数组排序

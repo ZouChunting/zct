@@ -173,25 +173,38 @@ public class Chain {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode odd = head; // 奇数
         ListNode even = head.next; // 偶数
-        while (odd != null) {
-            odd = odd.next;
-            even = even.next;
+        ListNode tmp = even.next;
+        ListNode tmpOdd = head;
+        ListNode tmpEven = even;
+        while (tmp != null) {
+            tmpOdd.next = tmp;
+            tmpOdd = tmpOdd.next;
+            tmpEven.next = tmp.next;
+            tmpEven = tmpEven.next;
+            tmp = tmp.next == null ? null : tmp.next.next;
         }
+        tmpOdd.next = even;
+
         return head;
     }
 
     // 19. 删除链表的倒数第 N 个结点
     // head = [1,2,3,4,5], n = 2
     public ListNode removeNthFromEnd(ListNode head, int n) {
+        if (head == null) {
+            return null;
+        }
         ListNode tmp = head;
         while (n > 0) {
             tmp = tmp.next;
             n--;
         }
-        ListNode node = null;
-        while (tmp != null) {
+        if (tmp == null) {
+            return head.next;
+        }
+        ListNode node = head;
+        while (tmp.next != null) {
             node = node.next;
             tmp = tmp.next;
         }
@@ -200,16 +213,92 @@ public class Chain {
         return head;
     }
 
+    // 148. 排序链表
+    // 找中点，归并排序
+    // [-1,5,3,4,0]
+    // 自顶向下的递归写法
+    public ListNode sortList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode right = cutList(head);
+        head = sortList(head);
+        right = sortList(right);
+
+        return mergeList(head, right);
+    }
+
+    public void sortList1(ListNode head) {
+        if (head.next == null) {
+            return;
+        }
+        // 二分的左右链表
+        ListNode left = head;
+        ListNode right = cutList(left);
+        sortList1(left);
+        sortList1(right);
+        ListNode res = mergeList(left, right);
+    }
+
+    // 切割链表
+    // 中点切割
+    public ListNode cutList(ListNode node) {
+        if (node == null) {
+            return null;
+        }
+        ListNode fast = node;
+        ListNode slow = node;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode right = slow.next;
+        slow.next = null;
+
+        return right;
+    }
+
+    // 合并链表
+    public ListNode mergeList(ListNode node1, ListNode node2) {
+        ListNode res = new ListNode();
+        ListNode tmp = res;
+        while (node1 != null && node2 != null) {
+            if (node1.val <= node2.val) {
+                tmp.next = node1;
+                node1 = node1.next;
+            } else {
+                tmp.next = node2;
+                node2 = node2.next;
+            }
+            tmp = tmp.next;
+        }
+        while (node1 != null) {
+            tmp.next = node1;
+            node1 = node1.next;
+            tmp = tmp.next;
+        }
+        while (node2 != null) {
+            tmp.next = node2;
+            node2 = node2.next;
+            tmp = tmp.next;
+        }
+        return res.next;
+    }
+
     public static void main(String[] args) {
         Chain chain = new Chain();
 
-        ListNode node1 = new ListNode(1);
+        ListNode node1 = new ListNode(4);
         ListNode node2 = new ListNode(2);
         ListNode node3 = new ListNode(1);
+        ListNode node4 = new ListNode(3);
+        // ListNode node5 = new ListNode(0);
 
-        // node1.next = node2;
-        // node2.next = node3;
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        // node4.next = node5;
 
-        System.out.println(chain.removeNthFromEnd(node1, 1));
+        System.out.println(chain.sortList(node1));
     }
 }
